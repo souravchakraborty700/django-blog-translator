@@ -1,16 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% block content %}
+        <div class="container">
         {% for post in post_list %}
-            <a href="{% url 'blog_view' post.slug %}"><h2>{{post.title}}</h2></a>
-            <p>{{post.author}}</p>
+            <div class="card m-3">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {{post.title}}
+                    </h2>
+                    <p class="card-text">
+                        {{post.content | slice:"400"}}
+                    </p>
+                    <p class="card-text">
+                        Author: {{post.author | title}}
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'blog_view' post.slug %}">Read More</a>
+                    
+                </div>
+            </div>
         {% endfor %}
+        </div>
         <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    </body>
-</html>
+{% endblock content %}
+
+        
 
